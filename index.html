@@ -3,296 +3,97 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#f8f7f4">
-  <meta name="description" content="周建奇的个人主页，记录嵌入式学习、STM32 实践与开源项目。">
+  <meta name="theme-color" content="#0b1020">
+  <meta name="description" content="周建奇的个人主页，记录嵌入式学习、STM32 项目与技术笔记。">
   <link rel="canonical" href="https://qqzxc276869-bot.github.io/">
-  <title>周建奇 · 个人作品集</title>
+  <title>周建奇 · 嵌入式学习主页</title>
   <style>
-    :root {
-      color-scheme: light;
-      --paper: #f8f7f4;
-      --white: #fff;
-      --ink: #192126;
-      --muted: #555e67;
-      --line: #dedfdd;
-      --accent: #2447cc;
-      --accent-dark: #1836a9;
-      --accent-soft: #eaf0ff;
-      --mono: "IBM Plex Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
-      --sans: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
-    }
-
-    *, *::before, *::after { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body { margin: 0; background: var(--paper); color: var(--ink); font: 16px/1.7 var(--sans); }
-    a { color: inherit; text-decoration: none; }
-    a:focus-visible { outline: 3px solid var(--accent); outline-offset: 5px; }
-    img { display: block; max-width: 100%; }
-    .wrap { width: min(1120px, calc(100% - 72px)); margin-inline: auto; }
-    .skip-link { position: absolute; top: 10px; left: 10px; z-index: 2; padding: 8px 12px; background: var(--white); transform: translateY(-150%); }
-    .skip-link:focus { transform: translateY(0); }
-
-    .site-header { border-bottom: 1px solid var(--line); }
-    .header-inner, .footer-inner { display: flex; justify-content: space-between; align-items: center; gap: 16px; }
-    .header-inner { min-height: 72px; }
-    .wordmark { font-size: 18px; font-weight: 750; letter-spacing: .02em; white-space: nowrap; }
-    .wordmark::after { content: ""; display: inline-block; width: 6px; height: 6px; margin-left: 5px; background: var(--accent); border-radius: 50%; }
-    .nav { display: flex; flex-wrap: wrap; align-items: center; gap: clamp(12px, 3vw, 34px); color: var(--muted); font-size: 14px; font-weight: 600; }
-    .nav a:hover, .footer-inner a:hover { color: var(--accent); }
-    .nav .github-link { color: var(--ink); white-space: nowrap; }
-
-    .hero { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); gap: clamp(32px, 8vw, 104px); align-items: center; padding-block: clamp(56px, 9vw, 112px); }
-    .hero-topic { display: inline-flex; align-items: center; gap: 10px; margin: 0 0 18px; color: var(--accent); font-size: 14px; font-weight: 700; }
-    .hero-topic::before { content: ""; width: 19px; height: 2px; background: currentColor; }
-    .hero h1 { margin: 0; font-size: clamp(44px, 7vw, 82px); font-weight: 760; line-height: 1.1; letter-spacing: -.065em; }
-    .hero h1 span { display: block; color: var(--accent); }
-    .hero-intro { max-width: 28em; margin: 24px 0 30px; color: var(--muted); font-size: clamp(16px, 1.7vw, 18px); line-height: 1.85; }
-    .primary-link { display: inline-flex; min-height: 48px; align-items: center; gap: 18px; padding: 10px 18px; border-radius: 8px; background: var(--accent); color: var(--white); font-size: 14px; font-weight: 700; }
-    .primary-link:hover { background: var(--accent-dark); }
-    .portrait { min-width: 0; margin: 0; overflow: hidden; border: 1px solid #d5ddf1; border-radius: 14px; background: var(--white); }
-    .portrait-panel {
-      display: grid;
-      place-items: center;
-      min-height: 220px;
-      aspect-ratio: 1.18;
-      padding: 22px;
-      background-color: var(--accent-soft);
-      background-image: linear-gradient(#2447cc13 1px, transparent 1px), linear-gradient(90deg, #2447cc13 1px, transparent 1px);
-      background-size: 24px 24px;
-      background-position: center;
-    }
-    .portrait img {
-      width: min(76%, 242px);
-      height: auto;
-      aspect-ratio: 1;
-      object-fit: cover;
-      border: 6px solid var(--white);
-      border-radius: 16px;
-      background: var(--accent-soft);
-      box-shadow: 0 12px 30px #1f337623;
-    }
-    .portrait figcaption { padding: 13px 18px; border-top: 1px solid #d5ddf1; color: var(--muted); font: 13px/1.4 var(--mono); overflow-wrap: anywhere; }
-
-    .section { padding-block: clamp(38px, 6vw, 70px); border-top: 1px solid var(--line); }
-    .section-heading { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 6px 20px; margin-bottom: 24px; }
-    .section h2 { margin: 0; font-size: clamp(28px, 4vw, 42px); line-height: 1.2; letter-spacing: -.045em; }
-    .section-link { color: var(--accent); font-size: 14px; font-weight: 700; }
-    .section-link:hover { text-decoration: underline; text-underline-offset: 4px; }
-    .projects-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; margin: 0; padding: 0; list-style: none; }
-    .project, .project-link { height: 100%; }
-    .project-link {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 9px;
-      padding: clamp(18px, 3vw, 28px);
-      border: 1px solid var(--line);
-      border-radius: 12px;
-      background: var(--white);
-      transition: border-color 160ms ease, box-shadow 160ms ease;
-    }
-    .project-link:hover, .project-link:focus-visible { border-color: #a2b1ed; box-shadow: 0 6px 24px #2447cc0c; }
-    .project-top { display: flex; justify-content: space-between; align-items: center; gap: 12px; width: 100%; }
-    .repo-name { min-width: 0; overflow-wrap: anywhere; color: var(--muted); font: 13px/1.45 var(--mono); }
-    .project-arrow { display: grid; width: 32px; height: 32px; flex: 0 0 32px; place-items: center; border-radius: 7px; background: var(--accent-soft); color: var(--accent); font-size: 17px; }
-    .project-link:hover .project-arrow, .project-link:focus-visible .project-arrow { background: var(--accent); color: var(--white); }
-    .project h3 { margin: 0; font-size: clamp(18px, 2.3vw, 22px); line-height: 1.4; }
-    .project p { margin: 0 0 10px; color: var(--muted); font-size: 14px; line-height: 1.75; }
-    .tags { display: flex; flex-wrap: wrap; gap: 6px; margin: auto 0 0; padding: 0; list-style: none; }
-    .tags li { padding: 3px 8px; border-radius: 5px; background: #f2f3f4; color: #43505b; font-size: 12px; line-height: 1.5; }
-
-    .about { display: grid; grid-template-columns: minmax(0, .6fr) minmax(0, 1fr); gap: 20px clamp(20px, 6vw, 80px); }
-    .about-copy p { max-width: 38em; margin: 0 0 12px; color: var(--muted); }
-    .about-copy .tags { margin-top: 18px; }
-    .footer-inner { min-height: 72px; flex-wrap: wrap; padding-block: 14px; border-top: 1px solid var(--line); color: var(--muted); font-size: 13px; }
-    .footer-inner p { margin: 0; }
-
-    @media (max-width: 720px) {
-      .wrap { width: calc(100% - 40px); }
-      .hero { grid-template-columns: 1fr; gap: 30px; padding-block: 44px; }
-      .portrait { width: min(100%, 350px); }
-      .portrait-panel { aspect-ratio: 1.32; }
-      .portrait img { width: min(72%, 194px); }
-      .about { grid-template-columns: 1fr; }
-    }
-
-    @media (max-width: 580px) {
-      .projects-grid { grid-template-columns: 1fr; gap: 10px; }
-    }
-
-    @media (max-width: 360px) {
-      .wrap { width: calc(100% - 32px); }
-      .header-inner { gap: 8px; }
-      .nav { gap: 9px; font-size: 13px; }
-      .hero h1 { font-size: 40px; }
-      .portrait-panel { min-height: 196px; }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      html { scroll-behavior: auto; }
-      .project-link { transition: none; }
-    }
+    :root{color-scheme:dark;--bg:#0b1020;--panel:#111a2e;--line:#24314b;--text:#edf3ff;--muted:#9baac4;--blue:#78aaff;--mint:#83e4c2}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(ellipse at 80% 0%,#172951 0,transparent 38%),var(--bg);color:var(--text);font:16px/1.7 system-ui,-apple-system,"Segoe UI","Microsoft YaHei",sans-serif}
+    a{color:inherit;text-decoration:none}.wrap{width:min(1080px,calc(100% - 40px));margin:auto}.topbar{height:72px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #ffffff12}.brand{font-weight:750;letter-spacing:.04em}.brand span{color:var(--mint)}nav{display:flex;gap:26px;color:var(--muted);font-size:14px}nav a:hover,.text-link:hover{color:var(--mint)}
+    .hero{padding:100px 0 84px;display:grid;grid-template-columns:1.3fr .7fr;gap:50px;align-items:center}.eyebrow{color:var(--mint);font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase}.hero h1{font-size:clamp(42px,7vw,76px);line-height:1.1;letter-spacing:-.05em;margin:18px 0}.hero h1 em{font-style:normal;color:var(--blue)}.intro{max-width:610px;color:var(--muted);font-size:17px}.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}.button{display:inline-flex;align-items:center;gap:9px;padding:11px 17px;border-radius:10px;border:1px solid var(--line);font-weight:650;font-size:14px;transition:.2s}.button.primary{background:var(--blue);color:#091225;border-color:var(--blue)}.button:hover{transform:translateY(-2px)}.orbit{min-height:260px;display:grid;place-items:center;position:relative}.orbit:before,.orbit:after{content:"";position:absolute;border:1px solid #78aaff35;border-radius:50%;width:230px;height:230px}.orbit:after{width:170px;height:170px;border-color:#83e4c250}.chip{position:absolute;padding:9px 13px;background:#121d33;border:1px solid var(--line);border-radius:999px;color:#cad7ec;font:13px ui-monospace,SFMono-Regular,Consolas,monospace}.chip.one{top:24px;left:8%}.chip.two{right:0;top:86px}.chip.three{bottom:22px;left:13%}.core{z-index:1;display:block;width:112px;height:112px;border-radius:30px;object-fit:cover;background:linear-gradient(140deg,#8ab5ff,#74e4c3);box-shadow:0 0 75px #78aaff35}
+    section{padding:48px 0 30px}.section-head{display:flex;justify-content:space-between;align-items:end;gap:20px;margin-bottom:22px}.section-head h2{margin:5px 0;font-size:27px;letter-spacing:-.03em}.section-head p{margin:0;color:var(--muted);font-size:14px}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.card{background:linear-gradient(145deg,#131e34,#101829);border:1px solid var(--line);border-radius:16px;padding:22px;min-height:205px;display:flex;flex-direction:column;transition:.2s}.card:hover{transform:translateY(-4px);border-color:#78aaff88}.icon{font-size:23px;margin-bottom:13px}.card h3{font-size:17px;margin:0 0 8px}.card p{font-size:14px;color:var(--muted);margin:0 0 18px}.text-link{margin-top:auto;color:var(--blue);font-size:13px;font-weight:650}.tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}.tag{font-size:12px;color:#c3d1e9;background:#ffffff0a;border:1px solid #ffffff12;border-radius:999px;padding:4px 9px}
+    .about{display:grid;grid-template-columns:1fr 1fr;gap:16px}.about-box{padding:24px;border-radius:16px;background:#111a2e;border:1px solid var(--line)}.about-box h3{margin:0 0 10px}.about-box p{margin:0;color:var(--muted);font-size:14px}.skill-list{display:flex;flex-wrap:wrap;gap:9px;margin-top:16px}.footer{margin-top:60px;border-top:1px solid #ffffff12;padding:24px 0 38px;color:var(--muted);font-size:13px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+    @media(max-width:760px){.hero{grid-template-columns:1fr;padding:70px 0 50px}.orbit{min-height:220px;max-width:430px;width:100%;margin:auto}.grid{grid-template-columns:1fr}.about{grid-template-columns:1fr}nav{gap:14px}.section-head{align-items:start;flex-direction:column}}
+    @media(max-width:430px){.wrap{width:min(100% - 28px,1080px)}nav{font-size:12px;gap:10px}.brand{font-size:14px}.hero h1{font-size:44px}}
   </style>
 </head>
-<body id="top">
-  <a class="skip-link" href="#main">跳到主要内容</a>
-  <header class="site-header">
-    <div class="wrap header-inner">
-      <a class="wordmark" href="#top">周建奇</a>
-      <nav class="nav" aria-label="主导航">
-        <a href="#projects">项目</a>
-        <a href="#about">关于</a>
-        <a class="github-link" href="https://github.com/qqzxc276869-bot" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a>
-      </nav>
-    </div>
+<body>
+  <header class="wrap topbar">
+    <a class="brand" href="#top">JIANQI <span>·</span> LAB</a>
+    <nav aria-label="主导航"><a href="#projects">项目</a><a href="#about">关于</a><a href="https://github.com/qqzxc276869-bot" target="_blank" rel="noreferrer">GitHub ↗</a></nav>
   </header>
-
-  <main class="wrap" id="main">
-    <section class="hero" aria-labelledby="intro-heading">
+  <main id="top" class="wrap">
+    <section class="hero">
       <div>
-        <p class="hero-topic">嵌入式开发 · STM32</p>
-        <h1 id="intro-heading">你好，我是<span>周建奇。</span></h1>
-        <p class="hero-intro">这里记录我的 STM32 外设实验、C/C++ 学习笔记，以及在实际使用中做出来的工具和项目。</p>
-        <a class="primary-link" href="#projects">查看项目 <span aria-hidden="true">↓</span></a>
-      </div>
-      <figure class="portrait">
-        <div class="portrait-panel">
-          <img src="https://avatars.githubusercontent.com/u/223822648?v=4" alt="周建奇的 GitHub 头像" width="242" height="242" fetchpriority="high">
+        <div class="eyebrow">Embedded Systems · Learning in Public</div>
+        <h1>你好，我是<br><em>周建奇。</em></h1>
+        <p class="intro">正在学习嵌入式开发，专注 C/C++、STM32 与单片机实践。这里记录项目、调试过程和一点点持续进步。</p>
+        <div class="actions">
+          <a class="button primary" href="#projects">看看我的项目 <span>↓</span></a>
+          <a class="button" href="https://github.com/qqzxc276869-bot" target="_blank" rel="noreferrer">访问 GitHub ↗</a>
         </div>
-        <figcaption>@qqzxc276869-bot</figcaption>
-      </figure>
-    </section>
-
-    <section class="section" id="projects" aria-labelledby="projects-heading">
-      <div class="section-heading">
-        <h2 id="projects-heading">项目与代码</h2>
-        <a class="section-link" href="https://github.com/qqzxc276869-bot?tab=repositories" target="_blank" rel="noreferrer">查看全部仓库 <span aria-hidden="true">↗</span></a>
       </div>
-      <ul class="projects-grid">
-        <li>
-          <article class="project">
-            <a class="project-link" href="https://github.com/qqzxc276869-bot/c" target="_blank" rel="noreferrer" aria-labelledby="project-1">
-              <div class="project-top">
-                <span class="repo-name">c</span>
-                <span class="project-arrow" aria-hidden="true">↗</span>
-              </div>
-              <h3 id="project-1">嵌入式学习笔记与代码</h3>
-              <p>整理 C/C++、51 单片机和 STM32 的学习笔记、练习代码与外设实验。</p>
-              <ul class="tags">
-                <li>C / C++</li>
-                <li>STM32</li>
-                <li>51 单片机</li>
-              </ul>
-            </a>
-          </article>
-        </li>
-        <li>
-          <article class="project">
-            <a class="project-link" href="https://github.com/qqzxc276869-bot/keil-assistant-optimized" target="_blank" rel="noreferrer" aria-labelledby="project-2">
-              <div class="project-top">
-                <span class="repo-name">keil-assistant-optimized</span>
-                <span class="project-arrow" aria-hidden="true">↗</span>
-              </div>
-              <h3 id="project-2">Keil Assistant 优化版</h3>
-              <p>用于 Keil uVision 的 VS Code 扩展，支持发现嵌套目录中的工程、编译项目，以及在编辑器中管理工程分组和文件。</p>
-              <ul class="tags">
-                <li>TypeScript</li>
-                <li>VS Code</li>
-                <li>Keil</li>
-              </ul>
-            </a>
-          </article>
-        </li>
-        <li>
-          <article class="project">
-            <a class="project-link" href="https://github.com/qqzxc276869-bot/prefect" target="_blank" rel="noreferrer" aria-labelledby="project-3">
-              <div class="project-top">
-                <span class="repo-name">prefect</span>
-                <span class="project-arrow" aria-hidden="true">↗</span>
-              </div>
-              <h3 id="project-3">实验室试剂与耗材库存管理系统</h3>
-              <p>面向实验室的库存管理系统，支持试剂与耗材出入库、领用审批、效期预警和库存统计。</p>
-              <ul class="tags">
-                <li>Spring Boot</li>
-                <li>Vue</li>
-                <li>MySQL</li>
-              </ul>
-            </a>
-          </article>
-        </li>
-        <li>
-          <article class="project">
-            <a class="project-link" href="https://github.com/qqzxc276869-bot/AI_resume" target="_blank" rel="noreferrer" aria-labelledby="project-4">
-              <div class="project-top">
-                <span class="repo-name">AI_resume</span>
-                <span class="project-arrow" aria-hidden="true">↗</span>
-              </div>
-              <h3 id="project-4">AI 简历生成与优化器</h3>
-              <p>在浏览器中编辑和预览简历，本地管理多版草稿，并根据目标岗位描述优化简历内容。</p>
-              <ul class="tags">
-                <li>JavaScript</li>
-                <li>AI</li>
-                <li>前端</li>
-              </ul>
-            </a>
-          </article>
-        </li>
-        <li>
-          <article class="project">
-            <a class="project-link" href="https://github.com/qqzxc276869-bot/HonorClip" target="_blank" rel="noreferrer" aria-labelledby="project-5">
-              <div class="project-top">
-                <span class="repo-name">HonorClip</span>
-                <span class="project-arrow" aria-hidden="true">↗</span>
-              </div>
-              <h3 id="project-5">HonorClip 王者剪辑</h3>
-              <p>识别《王者荣耀》录像中的击杀片段，支持批量处理并通过 FFmpeg 导出片段。</p>
-              <ul class="tags">
-                <li>Python</li>
-                <li>EasyOCR</li>
-                <li>FFmpeg</li>
-              </ul>
-            </a>
-          </article>
-        </li>
-        <li>
-          <article class="project">
-            <a class="project-link" href="https://github.com/qqzxc276869-bot/qqzxc276869-bot.github.io" target="_blank" rel="noreferrer" aria-labelledby="project-6">
-              <div class="project-top">
-                <span class="repo-name">qqzxc276869-bot.github.io</span>
-                <span class="project-arrow" aria-hidden="true">↗</span>
-              </div>
-              <h3 id="project-6">个人主页</h3>
-              <p>当前网站的源码，使用 HTML 和 CSS 编写，通过 GitHub Pages 发布。</p>
-              <ul class="tags">
-                <li>HTML</li>
-                <li>CSS</li>
-                <li>GitHub Pages</li>
-              </ul>
-            </a>
-          </article>
-        </li>
-      </ul>
+      <div class="orbit" aria-hidden="true">
+        <span class="chip one">while(learning)</span><span class="chip two">STM32</span><span class="chip three">C · C++</span>
+        <img class="core" src="https://avatars.githubusercontent.com/u/223822648?v=4" alt="" width="112" height="112">
+      </div>
     </section>
-
-    <section class="section about" id="about" aria-labelledby="about-heading">
-      <h2 id="about-heading">关于我</h2>
-      <div class="about-copy">
-        <p>我从 C 语言和 51 单片机学起，现在主要用 STM32 做外设实验，也会把遇到的问题和调试过程整理成笔记。</p>
-        <p>最近在练习 GPIO、定时器、中断和串口通信，尝试把实验代码组织成更容易维护的项目。</p>
-        <ul class="tags" aria-label="常用技术与工具">
-          <li>C / C++</li>
-          <li>STM32</li>
-          <li>Keil</li>
-          <li>Proteus</li>
-          <li>Git</li>
-        </ul>
+    <section id="projects" aria-labelledby="projects-heading">
+      <div class="section-head"><h2 id="projects-heading">项目与代码</h2><p>6 个公开仓库</p></div>
+      <div class="grid">
+        <article class="card">
+          <div class="icon" aria-hidden="true">⌘</div>
+          <h3>嵌入式学习笔记与代码</h3>
+          <p>整理 C/C++、51 单片机和 STM32 的学习笔记、练习代码与外设实验。</p>
+          <a class="text-link" href="https://github.com/qqzxc276869-bot/c" target="_blank" rel="noreferrer" aria-label="在 GitHub 查看嵌入式学习笔记与代码的源码">查看仓库 ↗</a>
+          <div class="tags"><span class="tag">C / C++</span><span class="tag">STM32</span><span class="tag">51 单片机</span></div>
+        </article>
+        <article class="card">
+          <div class="icon" aria-hidden="true">▣</div>
+          <h3>Keil Assistant 优化版</h3>
+          <p>用于 Keil uVision 的 VS Code 扩展，支持发现嵌套目录中的工程、编译项目，以及在编辑器中管理工程分组和文件。</p>
+          <a class="text-link" href="https://github.com/qqzxc276869-bot/keil-assistant-optimized" target="_blank" rel="noreferrer" aria-label="在 GitHub 查看Keil Assistant 优化版的源码">查看仓库 ↗</a>
+          <div class="tags"><span class="tag">TypeScript</span><span class="tag">VS Code</span><span class="tag">Keil</span></div>
+        </article>
+        <article class="card">
+          <div class="icon" aria-hidden="true">▤</div>
+          <h3>实验室试剂与耗材库存管理系统</h3>
+          <p>面向实验室的库存管理系统，支持试剂与耗材出入库、领用审批、效期预警和库存统计。</p>
+          <a class="text-link" href="https://github.com/qqzxc276869-bot/prefect" target="_blank" rel="noreferrer" aria-label="在 GitHub 查看实验室试剂与耗材库存管理系统的源码">查看仓库 ↗</a>
+          <div class="tags"><span class="tag">Spring Boot</span><span class="tag">Vue</span><span class="tag">MySQL</span></div>
+        </article>
+        <article class="card">
+          <div class="icon" aria-hidden="true">✦</div>
+          <h3>AI 简历生成与优化器</h3>
+          <p>在浏览器中编辑和预览简历，本地管理多版草稿，并根据目标岗位描述优化简历内容。</p>
+          <a class="text-link" href="https://github.com/qqzxc276869-bot/AI_resume" target="_blank" rel="noreferrer" aria-label="在 GitHub 查看AI 简历生成与优化器的源码">查看仓库 ↗</a>
+          <div class="tags"><span class="tag">JavaScript</span><span class="tag">AI</span><span class="tag">前端</span></div>
+        </article>
+        <article class="card">
+          <div class="icon" aria-hidden="true">▷</div>
+          <h3>HonorClip 王者剪辑</h3>
+          <p>识别《王者荣耀》录像中的击杀片段，支持批量处理并通过 FFmpeg 导出片段。</p>
+          <a class="text-link" href="https://github.com/qqzxc276869-bot/HonorClip" target="_blank" rel="noreferrer" aria-label="在 GitHub 查看HonorClip 王者剪辑的源码">查看仓库 ↗</a>
+          <div class="tags"><span class="tag">Python</span><span class="tag">EasyOCR</span><span class="tag">FFmpeg</span></div>
+        </article>
+        <article class="card">
+          <div class="icon" aria-hidden="true">◈</div>
+          <h3>个人主页</h3>
+          <p>当前网站的源码，使用 HTML 和 CSS 编写，通过 GitHub Pages 发布。</p>
+          <a class="text-link" href="https://github.com/qqzxc276869-bot/qqzxc276869-bot.github.io" target="_blank" rel="noreferrer" aria-label="在 GitHub 查看个人主页的源码">查看仓库 ↗</a>
+          <div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">GitHub Pages</span></div>
+        </article>
+      </div>
+    </section>
+    <section id="about">
+      <div class="section-head"><div><div class="eyebrow">A little about me</div><h2>关于我</h2></div></div>
+      <div class="about">
+        <div class="about-box"><h3>边学边做</h3><p>从 C 语言和 51 单片机开始，继续学习 STM32 外设与嵌入式开发。遇到问题就记录下来，把每次调试变成下一次进步的起点。</p></div>
+        <div class="about-box"><h3>正在关注</h3><p>GPIO、定时器、中断、串口通信，以及更规范的代码组织和项目实践。</p><div class="skill-list"><span class="tag">C / C++</span><span class="tag">STM32</span><span class="tag">Keil</span><span class="tag">Proteus</span><span class="tag">Git</span></div></div>
       </div>
     </section>
   </main>
-
-  <footer class="wrap footer-inner">
-    <p>© 2026 周建奇</p>
-    <a href="#top">回到顶部 <span aria-hidden="true">↑</span></a>
-  </footer>
+  <footer class="wrap footer"><span>© 2026 周建奇 · 用代码记录成长</span><a href="https://github.com/qqzxc276869-bot" target="_blank" rel="noreferrer">github.com/qqzxc276869-bot ↗</a></footer>
 </body>
 </html>
